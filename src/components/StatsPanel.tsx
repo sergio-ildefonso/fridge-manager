@@ -8,6 +8,7 @@ interface StatsPanelProps {
 }
 
 export function StatsPanel({ items, expiredItems, expiringSoonItems }: StatsPanelProps) {
+  const productLines = items.length;
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const categories = items.reduce((acc: Record<string, number>, item) => {
     acc[item.category] = (acc[item.category] || 0) + item.quantity;
@@ -24,10 +25,15 @@ export function StatsPanel({ items, expiredItems, expiringSoonItems }: StatsPane
         <FiDatabase className="mr-2" /> Estatísticas do Frigorífico
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="text-center">
+          <div className="text-2xl mb-1 text-slate-600">📦</div>
+          <p className="text-sm text-gray-600">Produtos</p>
+          <p className="font-semibold text-lg">{productLines}</p>
+        </div>
         <div className="text-center">
           <div className="text-2xl mb-1 text-blue-600">📊</div>
-          <p className="text-sm text-gray-600">Total de Itens</p>
+          <p className="text-sm text-gray-600">Unidades totais</p>
           <p className="font-semibold text-lg">{totalItems}</p>
         </div>
 

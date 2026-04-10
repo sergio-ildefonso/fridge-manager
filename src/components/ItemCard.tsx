@@ -1,14 +1,15 @@
 import type { FridgeItem } from '../db';
+import { daysFromTodayForDateString } from '../dateUtils';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 
 interface ItemCardProps {
   item: FridgeItem;
   onEdit: (item: FridgeItem) => void;
   onDelete: (id: number) => void;
-  daysUntilExpiry: number | null;
 }
 
-export function ItemCard({ item, onEdit, onDelete, daysUntilExpiry }: ItemCardProps) {
+export function ItemCard({ item, onEdit, onDelete }: ItemCardProps) {
+  const daysUntilExpiry = daysFromTodayForDateString(item.expiryDate);
   const getCategoryColor = () => {
     const colors: Record<string, string> = {
       'Frutas': 'bg-green-100 border-green-300',

@@ -18,6 +18,7 @@ export function EditItemModal({ item, onClose, onItemUpdated }: EditItemModalPro
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name.trim()) return;
 
     await db.items.update(item.id!, {
       name: name.trim(),

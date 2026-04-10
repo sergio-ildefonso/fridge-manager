@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { db } from '../db';
 import { FiX } from 'react-icons/fi';
-import type { FridgeItem } from '../db';
 
 interface AddItemModalProps {
   onClose: () => void;
